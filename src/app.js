@@ -1,47 +1,76 @@
-import { fetchCountry } from "./api.js";
+import { hideSpinner, showSpinner } from "./components/loadingSpinner.js";
 import {
-  renderHistory,
-  createCountryCard,
-  createErrorDiv,
-  clearPreviousResults,
-  setLoadingState,
-} from "./ui.js";
-import { updateHistory } from "./data.js";
+  createSearchForm,
+  disableSearchForm,
+  enableSearchForm,
+} from "./components/searchForm.js";
+import { createCountryCard } from "./components/countryCard.js";
+import {
+  updateSearchHistory,
+  addToHistory,
+} from "./components/searchHistory.js";
+import { createErrorMessage } from "./components/errorMessage.js";
+import { fetchCountry } from "./services/api.js";
 
-export async function handleSearch(event) {
-  event.preventDefault();
-  clearPreviousResults();
-  setLoadingState(true);
+let isSearching = false;
 
-  const resultDiv = document.getElementById("result");
-  const input = document.getElementById("country-search");
-
-  const countryName = input.value.toLowerCase().trim();
-  const data = await fetchCountry(countryName);
-
-  setLoadingState(false);
-
-  if (data) {
-    console.log("Country data:", data);
-    data.forEach((country) => {
-      updateHistory(country.name.common);
-      const countryDiv = createCountryCard(country);
-      resultDiv.appendChild(countryDiv);
-    });
-  } else {
-    const errorDiv = createErrorDiv();
-    resultDiv.appendChild(errorDiv);
-  }
-  input.value = "";
-  renderHistory(handleSearch);
+function clearResults() {
+  const resultDiv = document.getElementById("results-section");
+  resultDiv.innerHTML = "";
 }
 
-export function app() {
-  const form = document.getElementById("search-form");
-
-  renderHistory(handleSearch);
-
-  form.addEventListener("submit", async (event) => {
-    await handleSearch(event);
+function renderCountries(countries) {
+  const resultDiv = document.getElementById("results-section");
+  countries.forEach((country) => {
+    const countryCard = createCountryCard(country);
+    resultDiv.appendChild(countryCard);
   });
 }
+
+function renderError(message) {
+  const resultDiv = document.getElementById("results-section");
+  const errorMessage = createErrorMessage(message);
+  resultDiv.appendChild(errorMessage);
+}
+
+async function handleSearch(term) {
+  if (isSearching) {
+    return;
+  }
+
+  isSearching = true;
+  clearResults();
+  disableSearchForm();
+  showSpinner();
+
+  try {
+    const countries = await fetchCountry(term);
+
+    hideSpinner();
+    enableSearchForm();
+
+    if (countries && countries.length > 0) {
+      renderCountries(countries);
+      addToHistory(term, handleSearch);
+    } else {
+      renderError();
+    }
+  } catch (error) {
+    console.error("Error fetching country data:", error);
+    hideSpinner();
+    enableSearchForm();
+    renderError("An error occurred while fetching country data.");
+  } finally {
+    isSearching = false;
+  }
+}
+
+function app() {
+  const searchSection = document.getElementById("search-section");
+  const searchForm = createSearchForm(handleSearch);
+  searchSection.appendChild(searchForm);
+
+  updateSearchHistory(handleSearch);
+}
+
+document.addEventListener("DOMContentLoaded", app);
