@@ -1,0 +1,95 @@
+.favorite-item {
+  background: var(--card-background, #fff);
+  border: 1px solid var(--border-color, #e0e0e0);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.favorite-item:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.favorite-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.favorite-country-flag {
+  width: 80px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: var(--shadow-sm);
+}
+
+.favorite-country-name {
+  font-size: 24px;
+  color: var(--text-primary);
+}
+
+.favorite-actions {
+  display: flex;
+  justify-content: center;
+  align-items: space-around;
+}
+
+.favorite-actions > button {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: var(--transition);
+  margin: 12px;
+}
+
+.favorite-expand-btn {
+  color: var(--text-secondary);
+}
+
+.favorite-expand-btn:hover {
+  border-color: var(--primary-hover);
+  background: rgba(135, 177, 243, 0.05);
+}
+
+.favorite-remove-btn {
+  color: var(--error-color);
+}
+
+.favorite-remove-btn:hover {
+  border-color: var(--error-color);
+  background: rgba(231, 76, 60, 0.05);
+}
+
+.favorite-details {
+  padding: 12px;
+}
+
+.favorite-details-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  padding: 12px;
+}
+
+.favorite-detail-item {
+  display: flex;
+  align-items: baseline;
+}
+
+.favorite-detail-label {
+  font-weight: 600px;
+  color: var(--text-primary);
+  min-width: 90px;
+}
+
+.favorite-detail-value {
+  color: var(--text-secondary);
+}

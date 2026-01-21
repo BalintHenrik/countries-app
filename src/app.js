@@ -11,6 +11,7 @@ import {
 } from "./components/searchHistory.js";
 import { createErrorMessage } from "./components/errorMessage.js";
 import { fetchCountry } from "./services/api.js";
+import { updateFavoritesList } from "./components/favoritesList.js";
 
 let isSearching = false;
 
@@ -71,6 +72,7 @@ function app() {
   searchSection.appendChild(searchForm);
 
   updateSearchHistory(handleSearch);
+  updateFavoritesList();
 }
 
 document.addEventListener("DOMContentLoaded", app);

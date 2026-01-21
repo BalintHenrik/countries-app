@@ -1,18 +1,24 @@
 import {
+  addFavorite,
+  isFavorited,
+  removeFavorite,
+} from "../services/favorites.js";
+import {
   createElement,
   createImage,
   createLink,
   createInfoItem,
 } from "../utils/dom.js";
 import { formatNumber } from "../utils/formatters.js";
+import { updateFavoritesList } from "./favoritesList.js";
 
 export function createCountryCard(countryData) {
-  const card = createElement("div", "country-card fade-in");
+  const card = createElement("article", "country-card fade-in");
 
   const flagImg = createImage(
     countryData.flags.png,
     `Flag of ${countryData.name.common}`,
-    "country-flag"
+    "country-flag",
   );
 
   const content = createElement("div", "country-content");
@@ -21,20 +27,21 @@ export function createCountryCard(countryData) {
   title.textContent = countryData.name.common;
 
   const info = createElement("div", "country-info");
+  const header = createElement("div", "country-header");
 
   const capitalItem = createInfoItem(
     "country-info-item",
     "Capital",
     "country-info-label",
     countryData.capital || "N/A",
-    "country-info-value"
+    "country-info-value",
   );
   const populationItem = createInfoItem(
     "country-info-item",
     "Population",
     "country-info-label",
     formatNumber(countryData.population),
-    "country-info-value"
+    "country-info-value",
   );
 
   const currencyKey = Object.keys(countryData.currencies || {})[0];
@@ -44,21 +51,37 @@ export function createCountryCard(countryData) {
     "Currency",
     "country-info-label",
     currency ? `${currency.name} (${currency.symbol})` : "N/A",
-    "country-info-value"
+    "country-info-value",
   );
 
   const mapLink = createLink(
     countryData.maps.googleMaps,
     "View on Google Maps",
     "country-map-link",
-    true
+    true,
   );
+
+  const favoriteBtn = createElement("button", "favorite-btn");
+  favoriteBtn.textContent = isFavorited(countryData.name.common) ? "★" : "☆";
+  favoriteBtn.addEventListener("click", () => {
+    if (isFavorited(countryData.name.common)) {
+      removeFavorite(countryData.name.common);
+    } else {
+      addFavorite(countryData);
+    }
+    favoriteBtn.textContent = isFavorited(countryData.name.common) ? "★" : "☆";
+    updateFavoritesList();
+  });
+  favoriteBtn.id = `favorite-btn-${countryData.name.common}`;
 
   info.appendChild(capitalItem);
   info.appendChild(populationItem);
+  info.appendChild(currencyItem);
 
-  content.appendChild(title);
-  content.appendChild(currencyItem);
+  header.appendChild(title);
+  header.appendChild(favoriteBtn);
+
+  content.appendChild(header);
   content.appendChild(info);
   content.appendChild(mapLink);
 

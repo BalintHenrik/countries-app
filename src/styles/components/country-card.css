@@ -28,11 +28,17 @@
   flex-direction: column;
 }
 
+.country-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
 .country-name {
   font-size: 24px;
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 16px;
 }
 
 .country-info {
@@ -83,6 +89,19 @@
 .country-map-link::after {
   content: "→";
   font-size: 18px;
+}
+
+.favorite-btn {
+  background: transparent;
+  color: var(--star-color);
+  border: none;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.favorite-btn:hover {
+  transition: translateY(-2px);
+  text-shadow: var(--shadow-lg);
 }
 
 @media (max-width: 480px) {

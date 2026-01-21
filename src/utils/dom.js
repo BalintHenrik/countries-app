@@ -31,12 +31,12 @@ export function createInfoItem(
   label,
   labelClassName,
   value,
-  valueClassName
+  valueClassName,
 ) {
   const item = createElement("div", className);
 
   const labelSpan = createElement("span", labelClassName);
-  labelSpan.textContent = `${label}:`;
+  labelSpan.textContent = `${label}: `;
 
   const valueSpan = createElement("span", valueClassName);
   valueSpan.textContent = value;
