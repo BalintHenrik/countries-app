@@ -7,13 +7,12 @@ import { formatNumber } from "../utils/formatters.js";
 let expandedCountries = new Map();
 
 export function createFavoriteItem(countryData) {
+  const isExpanded = expandedCountries.has(countryData.name);
+
   const item = createElement("li", "favorite-item");
   item.id = `${countryData.name}`;
 
-  const isExpanded = expandedCountries.get(countryData.name);
-
   const header = createElement("div", "favorite-header");
-
   const title = createElement("h4", "favorite-country-name");
   title.textContent = countryData.name;
 
@@ -39,7 +38,7 @@ export function createFavoriteItem(countryData) {
   removeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     removeFavorite(countryData.name);
-    expandedCountries.delete(countryData.id);
+    expandedCountries.delete(countryData.name);
     const favoriteBtn = document.getElementById(
       `favorite-btn-${countryData.name}`,
     );
@@ -56,7 +55,7 @@ export function createFavoriteItem(countryData) {
   item.appendChild(header);
 
   if (isExpanded) {
-    const details = expandedCountries.get(countryData.id);
+    const details = expandedCountries.get(countryData.name);
     if (details) {
       const detailsElement = createExpandedDetails(details);
       item.appendChild(detailsElement);
