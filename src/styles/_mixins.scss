@@ -1,0 +1,92 @@
+@use "./variables" as *;
+
+// mixin: card
+@mixin card($padding: 24px, $shadow: $shadow-sm) {
+  background: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $shadow;
+  transition: $transition;
+  overflow: hidden;
+  padding: $padding;
+}
+
+// mixin: button variant
+@mixin btn-variant($bg: $primary-color, $color: white, $hover-bg: null) {
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  background: $bg;
+  border: none;
+  border-radius: $radius-md;
+  cursor: pointer;
+  transition: $transition;
+  white-space: nowrap;
+
+  &:hover:not(:disabled) {
+    background: $bg;
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// mixin: transition helper
+@mixin transition($prop: all, $duration: 0.3s) {
+  transition: $prop $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+// mixin: hover lift effect
+@mixin hover-lift($shadow: $shadow-md, $translateY: -2px) {
+  &:hover {
+    box-shadow: $shadow;
+    transform: translateY($translateY);
+    @include transition;
+  }
+}
+
+// mixin: map link style
+@mixin map-link() {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: $primary-color;
+  color: white;
+  text-decoration: none;
+  border-radius: $radius-md;
+  font-weight: 600;
+  font-size: 14px;
+  transition: $transition;
+  align-self: flex-start;
+
+  &:hover {
+    background: $primary-hover;
+    transform: translateX(4px);
+  }
+
+  &::after {
+    content: "→";
+    font-size: 18px;
+  }
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+%flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

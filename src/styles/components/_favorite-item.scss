@@ -1,0 +1,131 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.favorite-item {
+  @include card(16px, $shadow-sm);
+  @include hover-lift($shadow-lg, -2px);
+
+  .favorite-header {
+    @extend %flex-between;
+  }
+
+  .favorite-country-flag {
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: $shadow-sm;
+    margin-right: 16px;
+  }
+
+  .favorite-country-name {
+    font-size: 24px;
+    color: $text-primary;
+    font-weight: 600;
+    flex: 1;
+  }
+
+  .favorite-actions {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+
+    > button {
+      padding: 6px 12px;
+      font-size: 13px;
+      background: transparent;
+      border: 1px solid $border-color;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: $transition;
+      margin: 12px;
+      flex: 1;
+    }
+  }
+
+  .favorite-expand-btn {
+    color: $text-secondary;
+
+    &:hover {
+      border-color: $primary-hover;
+      background: rgba(135, 177, 243, 0.05);
+    }
+  }
+
+  .favorite-remove-btn {
+    color: $error-color;
+
+    &:hover {
+      border-color: $error-color;
+      background: rgba($error-color, 0.05);
+    }
+  }
+
+  .favorite-details {
+    padding: 12px;
+  }
+
+  .favorite-details-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 12px;
+
+    .favorite-detail-item {
+      display: flex;
+      align-items: baseline;
+    }
+
+    .favorite-detail-label {
+      font-weight: 600px;
+      color: $text-primary;
+      min-width: 90px;
+    }
+
+    .favorite-detail-value {
+      color: $text-secondary;
+    }
+  }
+
+  .favorite-map-link {
+    @include map-link;
+  }
+
+  @media (max-width: 640px) {
+    .favorite-details-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .favorite-country-flag {
+      width: 60px;
+      height: 40px;
+      margin-right: 12px;
+    }
+
+    .favorite-country-name {
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .favorite-actions {
+      flex: 1;
+      flex-direction: column;
+
+      > button {
+        margin: 6px 0;
+      }
+    }
+  }
+
+  @media (min-width: calc($breakpoint-md + 1px)) and (max-width: $breakpoint-lg) {
+    .favorite-details-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: calc($breakpoint-lg + 1px)) and (max-width: $breakpoint-xl) {
+    .favorite-details-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+}

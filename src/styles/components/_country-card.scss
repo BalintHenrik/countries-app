@@ -1,0 +1,90 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+.country-card {
+  @include card;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-4px);
+  }
+
+  .country-flag {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid $border-color;
+  }
+
+  .country-content {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    .country-header {
+      @extend %flex-between;
+      margin-bottom: 0.75rem;
+
+      .country-name {
+        font-size: 24px;
+        font-weight: 700;
+        color: $text-primary;
+      }
+
+      .favorite-btn {
+        background: transparent;
+        color: $star-color;
+        border: none;
+        font-size: 3rem;
+        cursor: pointer;
+
+        &:hover {
+          transition: translateY(-2px);
+          text-shadow: $shadow-lg;
+        }
+      }
+    }
+
+    .country-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex: 1;
+
+      .country-info-item {
+        display: flex;
+        align-items: baseline;
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .country-info-label {
+        font-weight: 600;
+        color: $text-primary;
+        min-width: 90px;
+      }
+
+      .country-info-value {
+        color: $text-secondary;
+      }
+    }
+
+    .country-map-link {
+      @include map-link;
+    }
+  }
+  @media (max-width: $breakpoint-sm) {
+    .country-content {
+      padding: 16px;
+    }
+
+    .country-flag {
+      height: 160px;
+    }
+  }
+}

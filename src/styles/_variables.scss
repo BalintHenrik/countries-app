@@ -1,0 +1,32 @@
+// Color Palette
+$primary-color: #4472ca;
+$primary-hover: #3461b8;
+$secondary-color: #5eadef;
+$background: #f5f7fa;
+$card-background: #ffffff;
+$text-primary: #2c3e50;
+$text-secondary: #7f8c8d;
+$border-color: #e0e6ed;
+$error-color: #e74c3c;
+$success-color: #2ecc71;
+$star-color: gold;
+
+// Shadows
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+$shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+// Border Radius
+$border-radius: 12px;
+$radius-sm: 6px;
+$radius-md: 8px;
+
+// Transitions
+$transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Layout
+$max-width: 1200px;
+$breakpoint-sm: 480px;
+$breakpoint-md: 640px;
+$breakpoint-lg: 768px;
+$breakpoint-xl: 1024px;

@@ -227,7 +227,7 @@ function createExpandedDetails(countryData) {
 
   // Map link
   if (countryData.maps?.googleMaps) {
-    const mapLink = createElement("a", "country-map-link");
+    const mapLink = createElement("a", "favorite-map-link");
     mapLink.href = countryData.maps.googleMaps;
     mapLink.textContent = "🗺️ View on Google Maps";
     mapLink.target = "_blank";

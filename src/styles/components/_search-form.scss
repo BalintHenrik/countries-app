@@ -1,0 +1,50 @@
+@use "../variables" as *;
+@use "../mixins" as *;
+
+#search-section {
+  margin-bottom: 32px;
+}
+
+.search-form {
+  display: flex;
+  gap: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 24px;
+  background: $card-background;
+  border-radius: $border-radius;
+  box-shadow: $shadow-sm;
+
+  .search-input {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 16px;
+    border: 2px solid $border-color;
+    border-radius: $radius-md;
+    outline: none;
+    transition: $transition;
+    font-family: inherit;
+
+    &:focus {
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba(68, 114, 202, 0.1);
+    }
+
+    &::placeholder {
+      color: $text-secondary;
+    }
+  }
+
+  .search-btn {
+    @include btn-variant($primary-color, white, $primary-hover);
+  }
+
+  @media (max-width: $breakpoint-lg) {
+    flex-direction: column;
+    padding: 16px;
+
+    .search-btn {
+      width: 100%;
+    }
+  }
+}

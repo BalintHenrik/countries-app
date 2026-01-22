@@ -1,0 +1,27 @@
+@use "../variables" as *;
+
+#favorites-section {
+  margin-bottom: 32px;
+
+  .favorites-container {
+    background: $card-background;
+    border-radius: $border-radius;
+    padding: 24px;
+    box-shadow: $shadow-sm;
+  }
+
+  .favorites-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.favorites-empty-state {
+  text-align: center;
+  color: $text-secondary;
+  font-size: 16px;
+  padding: 30px 20px;
+  background-color: $card-background;
+  border-radius: $border-radius;
+}
