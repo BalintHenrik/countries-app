@@ -15,9 +15,11 @@
   gap: 8px;
 }
 
-.favorite-empty-state {
+.favorites-empty-state {
   text-align: center;
   color: var(--text-secondary);
   font-size: 16px;
-  padding: 40px 20px;
+  padding: 30px 20px;
+  background-color: #fff;
+  border-radius: var(--border-radius);
 }

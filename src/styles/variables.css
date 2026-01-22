@@ -9,7 +9,8 @@
   --border-color: #e0e6ed;
   --error-color: #e74c3c;
   --success-color: #2ecc71;
-  --star-color: rgb(255, 234, 0);
+  /* --star-color: rgb(255, 234, 0); */
+  --star-color: gold;
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);

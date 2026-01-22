@@ -8,7 +8,7 @@ let expandedCountries = new Map();
 
 export function createFavoriteItem(countryData) {
   const item = createElement("li", "favorite-item");
-  item.setAttribute("id", `favorite-${countryData.name}`);
+  item.id = `${countryData.name}`;
 
   const isExpanded = expandedCountries.get(countryData.name);
 
@@ -68,11 +68,11 @@ export function createFavoriteItem(countryData) {
 }
 
 async function toggleExpand(favorite, item) {
-  const isCurrentlyExpanded = expandedCountries.has(favorite.id);
+  const isCurrentlyExpanded = expandedCountries.has(favorite.name);
 
   if (isCurrentlyExpanded) {
     // Collapse
-    expandedCountries.delete(favorite.id);
+    expandedCountries.delete(favorite.name);
     const detailsElement = item.querySelector(".favorite-details");
     if (detailsElement) {
       detailsElement.remove();
@@ -94,7 +94,7 @@ async function toggleExpand(favorite, item) {
       const fullData = await fetchCountryDetails(favorite.name);
 
       if (fullData) {
-        expandedCountries.set(favorite.id, fullData);
+        expandedCountries.set(favorite.name, fullData);
 
         // Remove loading state
         if (expandBtn) {
