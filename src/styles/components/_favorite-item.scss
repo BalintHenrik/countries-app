@@ -44,21 +44,19 @@
   }
 
   .favorite-expand-btn {
-    color: $text-secondary;
-
-    &:hover {
-      border-color: $primary-hover;
-      background: rgba(135, 177, 243, 0.05);
-    }
+    @include favorite-action-btn(
+      $text-secondary,
+      $primary-hover,
+      rgba(135, 177, 243, 0.05)
+    );
   }
 
   .favorite-remove-btn {
-    color: $error-color;
-
-    &:hover {
-      border-color: $error-color;
-      background: rgba($error-color, 0.05);
-    }
+    @include favorite-action-btn(
+      $error-color,
+      $error-color,
+      rgba($error-color, 0.05)
+    );
   }
 
   .favorite-details {

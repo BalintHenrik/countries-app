@@ -79,6 +79,48 @@
   }
 }
 
+@mixin favorite-action-btn($color, $hover-border, $hover-background) {
+  color: $color;
+
+  &:hover {
+    border-color: $hover-border;
+    background: $hover-background;
+  }
+}
+
+// .history-clear-btn {
+//         padding: 6px 12px;
+//         font-size: 13px;
+//         color: $text-secondary;
+//         background: transparent;
+//         border: 1px solid $border-color;
+//         border-radius: 6px;
+//         cursor: pointer;
+//         transition: $transition;
+
+//         &:hover {
+//           color: $error-color;
+//           border-color: $error-color;
+//           background: rgba(231, 76, 60, 0.05);
+//         }
+
+@mixin clear-btn() {
+  padding: 6px 12px;
+  font-size: 13px;
+  color: $text-secondary;
+  background: transparent;
+  border: 1px solid $border-color;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: $transition;
+
+  &:hover {
+    color: $error-color;
+    border-color: $error-color;
+    background: rgba(231, 76, 60, 0.05);
+  }
+}
+
 %flex-center {
   display: flex;
   justify-content: center;

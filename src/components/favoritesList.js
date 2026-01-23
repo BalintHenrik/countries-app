@@ -1,4 +1,4 @@
-import { getFavorites } from "../services/favorites.js";
+import { getFavorites, removeAllFavorites } from "../services/favorites.js";
 import { clearElementChildren, createElement } from "../utils/dom.js";
 import { createFavoriteItem } from "./favoriteItem.js";
 
@@ -16,7 +16,23 @@ export function createFavoritesList() {
   const title = createElement("h3", "favorites-title");
   title.textContent = "Favorite Countries";
 
+  const clearBtn = createElement("button", "favorites-clear-btn");
+  clearBtn.type = "button";
+  clearBtn.textContent = "Clear favorites";
+  clearBtn.addEventListener("click", () => {
+    const favorites = getFavorites();
+    favorites.forEach((fav) => {
+      const favoriteBtn = document.getElementById(`favorite-btn-${fav.name}`);
+      if (favoriteBtn) {
+        favoriteBtn.textContent = "☆";
+      }
+    });
+    removeAllFavorites();
+    updateFavoritesList();
+  });
+
   header.appendChild(title);
+  header.appendChild(clearBtn);
   container.appendChild(header);
 
   const list = createElement("ul", "favorites-list");
