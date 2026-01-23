@@ -500,7 +500,7 @@ body {
   gap: 8px;
   list-style: none;
 }
-.history-section .history-container .history-list .history-item {
+.history-section .history-container .history-list .history-item-btn {
   padding: 8px 16px;
   background: #f5f7fa;
   border: 1px solid #e0e6ed;
@@ -513,12 +513,12 @@ body {
      -moz-user-select: none;
           user-select: none;
 }
-.history-section .history-container .history-list .history-item:hover {
+.history-section .history-container .history-list .history-item-btn:hover {
   background: #4472ca;
   color: white;
   border-color: #4472ca;
 }
-.history-section .history-container .history-list .history-item:hover:hover {
+.history-section .history-container .history-list .history-item-btn:hover:hover {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transform: translateY(-2px);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);

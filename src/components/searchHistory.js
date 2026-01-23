@@ -37,8 +37,11 @@ export function createSearchHistory(onItemClick) {
 
   history.forEach((item) => {
     const li = createElement("li", "history-item");
-    li.textContent = item;
-    li.addEventListener("click", () => onItemClick(item));
+    const btn = createElement("button", "history-item-btn");
+    btn.type = "button";
+    btn.textContent = item;
+    btn.addEventListener("click", () => onItemClick(item));
+    li.appendChild(btn);
     list.appendChild(li);
   });
 

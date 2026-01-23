@@ -6,10 +6,12 @@ export function createSearchForm(onSubmit) {
   form.id = "search-form";
 
   const input = createElement("input", "search-input");
-  input.type = "text";
+  input.type = "search";
   input.id = "country-search";
   input.placeholder = "Enter country name...";
   input.required = true;
+  input.minLength = 3;
+  input.autocomplete = "off";
 
   const button = createElement("button", "search-btn");
   button.type = "submit";
@@ -30,7 +32,7 @@ export function createSearchForm(onSubmit) {
       if (resultsSection) {
         resultsSection.innerHTML = "";
         const errorMsg = createErrorMessage(
-          "Please enter at least 3 characters to search."
+          "Please enter at least 3 characters to search.",
         );
         resultsSection.appendChild(errorMsg);
       }
