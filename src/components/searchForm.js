@@ -6,7 +6,7 @@ export function createSearchForm(onSubmit) {
   form.id = "search-form";
 
   const input = createElement("input", "search-input");
-  input.type = "text";
+  input.type = "search";
   input.id = "country-search";
   input.placeholder = "Enter country name...";
   input.required = true;
