@@ -13,6 +13,7 @@ export function createSearchHistory(onItemClick) {
   }
 
   const section = createElement("section", "history-section");
+  section.ariaLabel = "Search history section";
   const container = createElement("div", "history-container");
 
   // Create header
@@ -23,7 +24,9 @@ export function createSearchHistory(onItemClick) {
 
   const clearBtn = createElement("button", "history-clear-btn");
   clearBtn.id = "clear-history";
+  clearBtn.type = "button";
   clearBtn.textContent = "Clear History";
+  clearBtn.ariaLabel = "Clear search history";
   clearBtn.addEventListener("click", () => {
     clearStorageHistory();
     updateSearchHistory(onItemClick);
@@ -34,6 +37,7 @@ export function createSearchHistory(onItemClick) {
 
   // Create list
   const list = createElement("ul", "history-list");
+  list.ariaLabel = "Search history list";
 
   history.forEach((item) => {
     const li = createElement("li", "history-item");

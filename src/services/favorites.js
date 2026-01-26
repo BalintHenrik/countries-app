@@ -34,6 +34,10 @@ export function removeFavorite(countryName) {
   saveFavorites(favorites);
 }
 
+export function removeAllFavorites() {
+  saveFavorites([]);
+}
+
 export function isFavorited(countryName) {
   if (!countryName || typeof countryName !== "string") {
     return false;

@@ -1,6 +1,11 @@
 import { fetchCountryDetails } from "../services/api.js";
 import { removeFavorite } from "../services/favorites.js";
-import { createElement, createImage, createInfoItem } from "../utils/dom.js";
+import {
+  createElement,
+  createImage,
+  createInfoItem,
+  createLink,
+} from "../utils/dom.js";
 import { updateFavoritesList } from "./favoritesList.js";
 import { formatNumber } from "../utils/formatters.js";
 
@@ -10,6 +15,7 @@ export function createFavoriteItem(countryData) {
   const isExpanded = expandedCountries.has(countryData.name);
 
   const item = createElement("li", "favorite-item");
+  item.ariaLabel = `Favorite country item for ${countryData.name}`;
   item.id = `${countryData.name}`;
 
   const header = createElement("div", "favorite-header");
@@ -30,11 +36,13 @@ export function createFavoriteItem(countryData) {
   const expandBtn = createElement("button", "favorite-expand-btn");
   expandBtn.textContent = isExpanded ? "▲ Collapse" : "▼ Expand";
   expandBtn.type = "button";
+  expandBtn.ariaLabel = "Toggle expand details for " + countryData.name;
   expandBtn.addEventListener("click", () => toggleExpand(countryData, item));
 
   const removeBtn = createElement("button", "favorite-remove-btn");
   removeBtn.textContent = "Remove";
   removeBtn.type = "button";
+  removeBtn.ariaLabel = "Remove " + countryData.name + " from favorites";
   removeBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     removeFavorite(countryData.name);
@@ -227,11 +235,13 @@ function createExpandedDetails(countryData) {
 
   // Map link
   if (countryData.maps?.googleMaps) {
-    const mapLink = createElement("a", "favorite-map-link");
-    mapLink.href = countryData.maps.googleMaps;
-    mapLink.textContent = "🗺️ View on Google Maps";
-    mapLink.target = "_blank";
-    mapLink.rel = "noopener noreferrer";
+    const mapLink = createLink(
+      countryData.maps.googleMaps,
+      "🗺️ View on Google Maps",
+      "favorite-map-link",
+      true,
+    );
+    mapLink.ariaLabel = `View ${countryData.name} on Google Maps`;
     details.appendChild(mapLink);
   }
 
