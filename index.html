@@ -15,13 +15,24 @@
           <h1 class="header-title">Country search</h1>
         </div>
       </header>
-      <main class="main-content">
-        <section id="search-section"></section>
-        <div id="loading-spinner" class="spinner hidden"></div>
-        <section id="history-section"></section>
-        <section id="results-section" class="results-container"></section>
+      <main class="main-content" aria-label="Main content">
+        <section
+          id="search-section"
+          aria-label="Search for countries"
+        ></section>
+        <div
+          id="loading-spinner"
+          class="spinner hidden"
+          aria-label="Loading"
+        ></div>
+        <section id="history-section" aria-label="Search history"></section>
+        <section
+          id="results-section"
+          class="results-container"
+          aria-label="Search results"
+        ></section>
       </main>
-      <section id="favorites-section"></section>
+      <section id="favorites-section" aria-label="Favorite countries"></section>
     </div>
     <script src="src/app.js" type="module"></script>
   </body>

@@ -14,6 +14,7 @@ import { updateFavoritesList } from "./favoritesList.js";
 
 export function createCountryCard(countryData) {
   const card = createElement("article", "country-card fade-in");
+  card.ariaLabel = `Country card for ${countryData.name.common}`;
 
   const flagImg = createImage(
     countryData.flags.png,
@@ -56,10 +57,11 @@ export function createCountryCard(countryData) {
 
   const mapLink = createLink(
     countryData.maps.googleMaps,
-    "View on Google Maps",
+    "🗺️ View on Google Maps",
     "country-map-link",
     true,
   );
+  mapLink.ariaLabel = `View ${countryData.name.common} on Google Maps`;
 
   const favoriteBtn = createElement("button", "favorite-btn");
   favoriteBtn.textContent = isFavorited(countryData.name.common) ? "★" : "☆";
@@ -73,6 +75,7 @@ export function createCountryCard(countryData) {
     updateFavoritesList();
   });
   favoriteBtn.id = `favorite-btn-${countryData.name.common}`;
+  favoriteBtn.ariaLabel = "Toggle favorite for " + countryData.name.common;
 
   info.appendChild(capitalItem);
   info.appendChild(populationItem);

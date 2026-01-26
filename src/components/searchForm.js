@@ -1,4 +1,4 @@
-import { createElement } from "../utils/dom.js";
+import { clearElementChildren, createElement } from "../utils/dom.js";
 import { createErrorMessage } from "./errorMessage.js";
 
 export function createSearchForm(onSubmit) {
@@ -10,11 +10,15 @@ export function createSearchForm(onSubmit) {
   input.id = "country-search";
   input.placeholder = "Enter country name...";
   input.required = true;
+  input.minLength = 3;
+  input.autocomplete = "off";
+  input.ariaLabel = "Enter country name";
 
   const button = createElement("button", "search-btn");
   button.type = "submit";
   button.id = "search-btn";
   button.textContent = "Search";
+  button.ariaLabel = "Search for country";
 
   form.appendChild(input);
   form.appendChild(button);
@@ -28,9 +32,9 @@ export function createSearchForm(onSubmit) {
     } else if (inputValue.length > 0 && inputValue.length < 3) {
       const resultsSection = document.getElementById("results-section");
       if (resultsSection) {
-        resultsSection.innerHTML = "";
+        clearElementChildren(resultsSection);
         const errorMsg = createErrorMessage(
-          "Please enter at least 3 characters to search."
+          "Please enter at least 3 characters to search.",
         );
         resultsSection.appendChild(errorMsg);
       }

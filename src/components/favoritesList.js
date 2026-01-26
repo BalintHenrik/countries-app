@@ -10,6 +10,7 @@ export function createFavoritesList() {
   }
 
   const favoriteSection = createElement("section", "favorites-section");
+  favoriteSection.ariaLabel = "Favorite countries section";
   const container = createElement("div", "favorites-container");
   const header = createElement("div", "favorites-header");
 
@@ -19,6 +20,7 @@ export function createFavoritesList() {
   const clearBtn = createElement("button", "favorites-clear-btn");
   clearBtn.type = "button";
   clearBtn.textContent = "Clear favorites";
+  clearBtn.ariaLabel = "Clear all favorite countries";
   clearBtn.addEventListener("click", () => {
     const favorites = getFavorites();
     favorites.forEach((fav) => {
@@ -61,6 +63,7 @@ export function updateFavoritesList() {
 
 function createEmptyState() {
   const section = createElement("section", "favorites-section");
+  section.ariaLabel = "Favorite countries section";
   const emptyState = createElement("div", "favorites-empty-state");
   const emptyMessage = createElement("p");
   emptyMessage.textContent =

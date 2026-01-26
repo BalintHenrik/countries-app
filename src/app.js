@@ -12,12 +12,13 @@ import {
 import { createErrorMessage } from "./components/errorMessage.js";
 import { fetchCountry } from "./services/api.js";
 import { updateFavoritesList } from "./components/favoritesList.js";
+import { clearElementChildren } from "./utils/dom.js";
 
 let isSearching = false;
 
 function clearResults() {
   const resultDiv = document.getElementById("results-section");
-  resultDiv.innerHTML = "";
+  clearElementChildren(resultDiv);
 }
 
 function renderCountries(countries) {
